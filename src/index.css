@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* BlockDetails.css */
+
+.block-container {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 16px;
+  background-color: #f5f5f5;
+}
+
+.block-title {
+  color: #007acc;
+}
+
+.close-button {
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.block-data {
+  color: #000;
+  font-size: 14px;
+}
