@@ -36,3 +36,55 @@ code {
   color: #000;
   font-size: 14px;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto; /* Center the table horizontally */
+  text-align: center; /* Center the contents of the table horizontally */
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center; /* Center the contents of the cells horizontally */
+  vertical-align: middle; /* Center the contents of the cells vertically */
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+
+/* Transaction container */
+.transaction-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Transaction details list */
+.transaction-details {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Transaction detail item */
+.transaction-detail-item {
+  margin-bottom: 10px;
+}
+
+/* Transaction detail label */
+.transaction-label {
+  font-weight: bold;
+}
+
+/* Transaction detail value */
+.transaction-value {
+  margin-left: 10px;
+}

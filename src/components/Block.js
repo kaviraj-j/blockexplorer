@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getBlockData } from "../alchemy/alchemy";
 
-function Block({ blockData, onClose }) {
-  if (!blockData) return null;
+function Block() {
+  const { blockNumber } = useParams();
+  const [blockData, setBlockData] = useState(null);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await getBlockData(blockNumber);
+        setBlockData(response);
+      } catch (err) {
+        alert("Enter Valid Number");
+      }
+    }
+    getData();
+  }, [blockNumber]);
+
+  console.log(blockNumber);
+  if (!blockData) return <>Loading.....</>;
 
   return (
     <div className="block-container">
       <h2 className="block-title">Block Details</h2>
-      <button className="close-button" onClick={onClose}>
-        Close
-      </button>
+
       <div className="block-data">
         <p>
           <strong>Hash:</strong> {blockData.hash}
@@ -34,6 +49,21 @@ function Block({ blockData, onClose }) {
         </p>
         <p>
           <strong>Extra Data:</strong> {blockData.extraData}
+        </p>
+        <p>
+          <strong>Transactions:</strong>{" "}
+          <table>
+            {" "}
+            {blockData.transactions.map((tx, index) => {
+              return (
+                <tr key={index}>
+                  <td>
+                    <a href={`/transaction/${tx}`}>{tx}</a>
+                  </td>
+                </tr>
+              );
+            })}
+          </table>
         </p>
       </div>
     </div>
