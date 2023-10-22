@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { getBalance } from "../alchemy/alchemy";
 import { useParams } from "react-router-dom";
+import { Alchemy, Network } from "alchemy-sdk";
+const settings = {
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+  network: Network.ETH_MAINNET,
+};
+
+const alchemy = new Alchemy(settings);
+
+async function getBalance(address) {
+  console.log(address);
+  try {
+    const response = await alchemy.core.getBalance(address, "latest");
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 function formatBalance(balance) {
   if (balance !== null) {

@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getTransactionData } from "../alchemy/alchemy";
+import { Alchemy, Network } from "alchemy-sdk";
+const settings = {
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+  network: Network.ETH_MAINNET,
+};
+
+const alchemy = new Alchemy(settings);
+
+async function getTransactionData(transactionHash) {
+  try {
+    const response = await alchemy.transact.getTransaction(transactionHash);
+    return response;
+  } catch (err) {
+    alert("Enter Valid Hash");
+  }
+}
 
 function Transaction() {
   const { transactionHash } = useParams();

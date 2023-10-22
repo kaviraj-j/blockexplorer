@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getBlockData } from "../alchemy/alchemy";
+import { Alchemy, Network, toHex } from "alchemy-sdk";
+const settings = {
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+  network: Network.ETH_MAINNET,
+};
+
+const alchemy = new Alchemy(settings);
+async function getBlockData(blockNumber) {
+  try {
+    const response = await alchemy.core.getBlock(toHex(blockNumber));
+    return response;
+  } catch (err) {
+    throw new Error("Unable to fetch block data");
+  }
+}
 
 function Block() {
   const { blockNumber } = useParams();

@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { getLatestBlockNumber } from "../alchemy/alchemy";
+import { Alchemy, Network } from "alchemy-sdk";
+const settings = {
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+  network: Network.ETH_MAINNET,
+};
+
+const alchemy = new Alchemy(settings);
+async function getLatestBlockNumber() {
+  try {
+    const response = await alchemy.core.getBlockNumber();
+    return response;
+  } catch (err) {
+    alert(err);
+  }
+}
 
 function BlockNumber() {
   const [blockNumber, setBlockNumber] = useState(null);
